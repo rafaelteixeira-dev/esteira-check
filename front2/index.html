@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-Font2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container">
+            <span class="logo-texto">SmartPicking</span>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <h1 class="title">Identificação do Operador</h1>
+        <p class="subtitle">Informe seus dados para iniciar a confercência de peças</p>
+
+        <form id="loginForm" class="form-card">
+
+            <div class="input-group">
+                <label for="operadorName" class="input-label">Nome do Operador</label>
+                <div class="select">
+                  <select id="operadorName" required>
+                    <option value="" disabled selected hidden>Selecione seu nome(ex:Lucas Santos/ Rafaela...)</option>
+                    <option value="lucas">Lucas Santos</option>
+                    <option value="ryan">Ryan Nicolas</option>
+                    <option value="levi">Levi</option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="acoes">
+                <label for="workShift" class="input-label">TURNO / LOTE DE TRABALHO</label>
+                <input type="text" id="workShift" placeholder="Digite o número do turno ou lote" required>
+            </div>
+
+            <button type="submit" class="btn-submit">INICIAR TURNO</button>
+
+        </form>
+    </main>
+</body>
+</html>
