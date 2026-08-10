@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartPicking - Painel do Supervisor</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-content">
+      <span class="logo-texto">SmartPicking - Bumerangue Brasil</span>
+      <div class="header-info">
+        <button class="btn-supervisor-role">
+          👤 Supervisor
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="dashboard-layout">
+ 
+    <aside class="sidebar">
+      <div class="sidebar-title">
+        <span>⚙️</span> FILTROS RÁPIDOS
+      </div>
+      <nav class="filter-menu">
+        <button class="btn-filter active" data-filter="todos">Todos os Pedidos</button>
+        <button class="btn-filter" data-filter="andamento">Em Andamento</button>
+        <button class="btn-filter" data-filter="concluidos">Concluídos</button>
+        <button class="btn-filter" data-filter="divergencia">Com Divergência</button>
+      </nav>
+    </aside>
+
+    <main class="dashboard-main">
+    
+      <section class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-title">Pedidos Concluídos Hoje</span>
+          <div class="kpi-value">48</div>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-title">Taxa de Erro na Separação</span>
+          <div class="kpi-value">0%</div>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-title">Tempo Médio por Pedido</span>
+          <div class="kpi-value">4 min 12s</div>
+        </div>
+      </section>
+
+      <section class="orders-card">
+        <div class="orders-header">
+          <div class="orders-title">
+            <h2>Histórico e Status de Separação em Tempo Real</h2>
+            <p>Acompanhamento dos pedidos em andamento e concluídos</p>
+          </div>
+          <input type="text" id="inputBusca" class="search-input" placeholder="🔍 Buscar pedido...">
+        </div>
+
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>ID PEDIDO</th>
+              <th>OPERADOR</th>
+              <th>QTD PEÇAS</th>
+              <th>STATUS</th>
+              <th>TEMPO TOTAL</th>
+              <th>AÇÕES</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaPedidos">
+            <tr data-status="andamento">
+              <td><strong>#1042</strong></td>
+              <td>Lucas Santos</td>
+              <td>30/30</td>
+              <td><span class="badge-status badge-progress">Em Andamento (60%)</span></td>
+              <td>02m 15s</td>
+              <td><button class="btn-details">... [ VER DETALHES ]</button></td>
+            </tr>
+            <tr data-status="concluidos">
+              <td><strong>#1041</strong></td>
+              <td>Rafael Teixeira</td>
+              <td>45/45</td>
+              <td><span class="badge-status badge-concluded">Concluído</span></td>
+              <td>03m 50s</td>
+              <td><button class="btn-details">... [ VER DETALHES ]</button></td>
+            </tr>
+            <tr data-status="concluidos">
+              <td><strong>#1040</strong></td>
+              <td>Lucas Santos</td>
+              <td>30/30</td>
+              <td><span class="badge-status badge-concluded">Concluído</span></td>
+              <td>04m 10s</td>
+              <td><button class="btn-details">... [ VER DETALHES ]</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

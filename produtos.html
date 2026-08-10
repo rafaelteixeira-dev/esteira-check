@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartPicking - Cadastro de Produtos</title>
+  <link rel="stylesheet" href="style3.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="navbar-content">
+      <span class="logo-texto">SmartPicking - Gestão</span>
+      <div class="header-info">
+        <p><strong>Acesso:</strong> Supervisor / Gerente</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    <h2>Cadastrar Novo Produto (Estoque)</h2>
+    <p style="font-size: 13px; color: #666; margin-bottom: 20px;">Registre os produtos e seus respectivos códigos de
+      barras para validação nas esteiras.</p>
+
+    <form id="formProduto" class="form-card" style="max-width: 100%;">
+      <div class="form-grid">
+        <div class="input-group">
+          <label class="input-label">Nome da Peça / Produto</label>
+          <input type="text" id="nomeProduto" placeholder="Ex: Engrenagem Plástica 50mm" required>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">Código de Barras / QR Code (String)</label>
+          <input type="text" id="codigoProduto" placeholder="Ex: 7891234567890" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">[ CADASTRAR PRODUTO ]</button>
+    </form>
+
+    <h3 style="margin-top: 40px;">Produtos Cadastrados no Sistema</h3>
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Código de Leitura</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaProdutos">
+        <!-- Os produtos vão aparecer aqui -->
+      </tbody>
+    </table>
+  </main>
+</body>
+
+</html>

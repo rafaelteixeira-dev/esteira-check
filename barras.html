@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPicking - Conferência de Peças</title>
+    <link rel="stylesheet" href="style2.css">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container">
+            <span class="logo-texto">SmartPicking</span>
+        </div>
+    </header>
+
+    <main class="main-conferencia">
+        <section class="progress-section">
+            <div class="progress-header">
+                <span>PROGRESSO DO PEDIDO</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+            </div>
+        </section>
+
+        <section class="counter-section">
+            <span class="count-bold" id="counterText">0 / 30</span>
+            <span class="count-text">peças conferidas</span>
+        </section>
+
+        <!-- Leitor de Câmera / Scanner -->
+        <section class="scanner-box">
+            <div id="reader" style="width: 100%; max-width: 320px; display: none;"></div>
+
+            <div class="scanner-content" id="scannerPlaceholder">
+                <svg class="camera-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path
+                        d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                    <circle cx="12" cy="13" r="3" />
+                </svg>
+                <p>APROXIME O QR CODE OU CÓDIGO DE BARRAS DA PEÇA</p>
+                <button class="btn-action btn-report" id="btnToggleCamera" style="margin-top: 10px;">📷 Abrir
+                    Câmera</button>
+            </div>
+        </section>
+
+        <section class="current-item-section">
+            <span class="item-label">ITEM ATUAL ESPERADO</span>
+            <h2 class="item-name" id="currentItemName">Engrenagem Plástica 50mm</h2>
+            <small style="color: #666;" id="currentItemCode">Cód: 7891234567890</small>
+        </section>
+
+        <div class="status-banner" id="statusBanner" style="background-color: #333;">
+            Aguardando leitura do código...
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-action btn-report" id="btnReportar">
+                ⚠️ [ REPORTAR DIVERGÊNCIA / ERRO ]
+            </button>
+            <button class="btn-action btn-finish" id="btnFinalizar" disabled>
+                [ FINALIZAR PEDIDO ]
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Modal para Reportar Divergência -->
+    <dialog id="modalDivergencia"
+        style="padding: 20px; border-radius: 8px; border: 1px solid #ccc; max-width: 400px; margin: auto;">
+        <h3>Reportar Divergência</h3>
+        <p style="font-size: 13px; margin: 10px 0;">Selecione o problema encontrado na peça atual:</p>
+        <select id="motivoErro" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+            <option value="Peça Danificada">Peça Danificada / Avariada</option>
+            <option value="Código Incompatível">Código de Barras Ilegível</option>
+            <option value="Item Incorreto">Item Físico Diferente do Sistema</option>
+            <option value="Falta de Estoque">Falta do Item na Prateleira</option>
+        </select>
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+            <button onclick="document.getElementById('modalDivergencia').close()"
+                style="padding: 8px 12px; cursor: pointer;">Cancelar</button>
+            <button id="btnConfirmarErro"
+                style="padding: 8px 12px; background: #000; color: #fff; border: none; cursor: pointer;">Confirmar
+                Erro</button>
+        </div>
+    </dialog>
+
+    <script src="barras.js"></script>
+
+</body>
+</html>
