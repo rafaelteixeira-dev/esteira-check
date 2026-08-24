@@ -13,6 +13,7 @@
         <div class="container">
             <span class="logo-texto">SmartPicking</span>
         </div>
+        <a href="dashboard.html" class="nav-btn" style="text-decoration: none;">👤 Painel do Supervisor</a>
     </header>
 
     <main class="main-container">
@@ -24,15 +25,19 @@
             <div class="input-group">
                 <label for="operadorName" class="input-label">Nome do Operador</label>
                 <div class="select">
-                  <select id="operadorName" required>
-                    <option value="" disabled selected hidden>Selecione seu nome(ex:Lucas Santos...)</option>
-                    <option value="lucas">Lucas Santos</option>
-                    <option value="ryan">Ryan Nicolas</option>
-                    <option value="levi">Levi</option>
-                  </select>
+                    <select id="operadorName" required>
+                        <option value="" disabled selected hidden>Selecione seu nome</option>
+                        <option value="lucas">Lucas Santos</option>
+                        <option value="ryan">Ryan Nicolas</option>
+                        <option value="levi">Levi</option>
+                    </select>
                 </div>
             </div>
-
+            <div class="field">
+                <label>Senha</label>
+                <input type="password" id="senha-input" placeholder="Digite sua senha">
+                <p class="subtitle">Lucas Satnos e Rafael Teixeira já vem cadastrados coma senha "1234"</p>
+            </div>
             <div class="acoes">
                 <label for="workShift" class="input-label">TURNO / LOTE DE TRABALHO</label>
                 <input type="text" id="workShift" placeholder="Digite o número do turno ou lote" required>
@@ -40,7 +45,14 @@
 
             <button type="submit" class="btn-submit">INICIAR TURNO</button>
 
+            
+            <div>
+                <button type="button" id="open-cadastro" class="btn-cadastro">+Cadastrar novo operador</button>
+            </div>
+
         </form>
     </main>
+    <script src="index.js"></script>
 </body>
+
 </html>

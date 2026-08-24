@@ -14,6 +14,9 @@
         <div class="container">
             <span class="logo-texto">SmartPicking</span>
         </div>
+        <a href="dashboard.html" style="text-decoration: none;">
+            <button class="nav-btn" id="btn-goto-supervisor">👤 Painel do Supervisor</button>
+        </a>
     </header>
 
     <main class="main-conferencia">
@@ -32,19 +35,25 @@
             <span class="count-text">peças conferidas</span>
         </section>
 
-        <!-- Leitor de Câmera / Scanner -->
+        <!-- Leitor de Câmera / Scanner / Simulação -->
         <section class="scanner-box">
             <div id="reader" style="width: 100%; max-width: 320px; display: none;"></div>
 
             <div class="scanner-content" id="scannerPlaceholder">
-                <svg class="camera-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path
-                        d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-                    <circle cx="12" cy="13" r="3" />
-                </svg>
-                <p>APROXIME O QR CODE OU CÓDIGO DE BARRAS DA PEÇA</p>
-                <button class="btn-action btn-report" id="btnToggleCamera" style="margin-top: 10px;">📷 Abrir
-                    Câmera</button>
+                <p>VALIDAR PEÇA NO PEDIDO</p>
+
+                <div
+                    style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 12px;">
+                    <!-- Opção 1: Simulação rápida -->
+                    <button class="btn-action" id="btnSimular" type="button">⚡ Simular Leitura</button>
+
+                    <!-- Opção 2: Digitação Manual do Código -->
+                    <div style="display: flex; gap: 6px;">
+                        <input type="text" id="inputCodigoManual" placeholder="Digite o código de barras..."
+                            style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.85rem; outline: none; width: 200px;">
+                        <button class="btn-action" id="btnValidarManual" type="button">Validar</button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -92,4 +101,5 @@
     <script src="barras.js"></script>
 
 </body>
+
 </html>

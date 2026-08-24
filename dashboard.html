@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SmartPicking - Painel do Supervisor</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="style3.css">
 </head>
+
 <body>
   <header class="navbar">
-    <div class="navbar-content">
-      <span class="logo-texto">SmartPicking - Bumerangue Brasil</span>
-      <div class="header-info">
-        <button class="btn-supervisor-role">
-          👤 Supervisor
-        </button>
-      </div>
+    <div class="container">
+      <span class="logo-texto">SmartPicking</span>
     </div>
+    <a href="index.html" style="text-decoration: none;">
+      <button class="nav-btn" id="btn-goto-supervisor">👤 Painel de cadastro</button>
+    </a>
   </header>
+
   <div class="dashboard-layout">
- 
+
+    <!-- LATERAL: Filtros + Novo Item de Gestão de Produtos -->
     <aside class="sidebar">
       <div class="sidebar-title">
-        <span>⚙️</span> FILTROS RÁPIDOS
+        <span>⚙️</span> MENU PRINCIPAL
       </div>
       <nav class="filter-menu">
-        <button class="btn-filter active" data-filter="todos">Todos os Pedidos</button>
+        <button class="btn-filter active" id="tabBtnPedidos" onclick="trocarAba('pedidos')">📊 Visão Geral
+          Pedidos</button>
+        <button class="btn-filter" id="tabBtnProdutos" onclick="trocarAba('produtos')">📦 Cadastrar Produtos</button>
+      </nav>
+
+      <div class="sidebar-title" style="margin-top: 20px;">
+        <span>🔍</span> FILTROS DE PEDIDOS
+      </div>
+      <nav class="filter-menu">
+        
         <button class="btn-filter" data-filter="andamento">Em Andamento</button>
         <button class="btn-filter" data-filter="concluidos">Concluídos</button>
         <button class="btn-filter" data-filter="divergencia">Com Divergência</button>
@@ -33,75 +45,113 @@
     </aside>
 
     <main class="dashboard-main">
-    
-      <section class="kpi-grid">
-        <div class="kpi-card">
-          <span class="kpi-title">Pedidos Concluídos Hoje</span>
-          <div class="kpi-value">48</div>
-        </div>
-        <div class="kpi-card">
-          <span class="kpi-title">Taxa de Erro na Separação</span>
-          <div class="kpi-value">0%</div>
-        </div>
-        <div class="kpi-card">
-          <span class="kpi-title">Tempo Médio por Pedido</span>
-          <div class="kpi-value">4 min 12s</div>
-        </div>
-      </section>
 
-      <section class="orders-card">
-        <div class="orders-header">
-          <div class="orders-title">
-            <h2>Histórico e Status de Separação em Tempo Real</h2>
-            <p>Acompanhamento dos pedidos em andamento e concluídos</p>
+      <!-- ABA 1: PAINEL DE PEDIDOS -->
+      <div id="sectionPedidos">
+        <section class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-title">Pedidos Concluídos</span>
+            <div class="kpi-value" id="kpiConcluidos">0</div>
           </div>
-          <input type="text" id="inputBusca" class="search-input" placeholder="🔍 Buscar pedido...">
-        </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Pedidos em Andamento</span>
+            <div class="kpi-value" id="kpiAndamento">0</div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Total de Pedidos</span>
+            <div class="kpi-value" id="kpiTotal">0</div>
+          </div>
+        </section>
 
-        <table class="orders-table">
-          <thead>
-            <tr>
-              <th>ID PEDIDO</th>
-              <th>OPERADOR</th>
-              <th>QTD PEÇAS</th>
-              <th>STATUS</th>
-              <th>TEMPO TOTAL</th>
-              <th>AÇÕES</th>
-            </tr>
-          </thead>
-          <tbody id="tabelaPedidos">
-            <tr data-status="andamento">
-              <td><strong>#1042</strong></td>
-              <td>Lucas Santos</td>
-              <td>30/30</td>
-              <td><span class="badge-status badge-progress">Em Andamento (60%)</span></td>
-              <td>02m 15s</td>
-              <td><button class="btn-details">... [ VER DETALHES ]</button></td>
-            </tr>
-            <tr data-status="concluidos">
-              <td><strong>#1041</strong></td>
-              <td>Rafael Teixeira</td>
-              <td>45/45</td>
-              <td><span class="badge-status badge-concluded">Concluído</span></td>
-              <td>03m 50s</td>
-              <td><button class="btn-details">... [ VER DETALHES ]</button></td>
-            </tr>
-            <tr data-status="concluidos">
-              <td><strong>#1040</strong></td>
-              <td>Lucas Santos</td>
-              <td>30/30</td>
-              <td><span class="badge-status badge-concluded">Concluído</span></td>
-              <td>04m 10s</td>
-              <td><button class="btn-details">... [ VER DETALHES ]</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+        <section class="orders-card">
+          <div class="orders-header">
+            <div class="orders-title">
+              <h2>Histórico e Status de Separação</h2>
+              <p>Progresso e contagem de peças em tempo real</p>
+            </div>
+            <input type="text" id="inputBusca" class="search-input" placeholder="🔍 Buscar pedido...">
+          </div>
+
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>ID PEDIDO</th>
+                <th>OPERADOR</th>
+                <th>PROGRESSO PEÇAS</th>
+                <th>STATUS</th>
+                <th>AÇÕES</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaPedidos">
+              <!-- Os pedidos salvos no barras.html aparecem aqui -->
+            </tbody>
+          </table>
+        </section>
+      </div>
+
+      <!-- ABA 2: CADASTRO DE PRODUTOS (Antigo produtos.html) -->
+      <div id="sectionProdutos" style="display: none;">
+        <div class="admin-container" style="margin: 0; max-width: 100%;">
+          <h2>Cadastrar Novo Produto (Estoque)</h2>
+          <p style="font-size: 13px; color: #666; margin-bottom: 20px;">
+            Registre os produtos para validação na esteira.
+          </p>
+
+          <form id="formProduto" class="form-card" style="max-width: 100%;">
+            <div class="form-grid">
+              <div class="input-group">
+                <label class="input-label">Nome da Peça / Produto</label>
+                <input type="text" id="nomeProduto" placeholder="Ex: Engrenagem Plástica 50mm" required>
+              </div>
+
+              <div class="input-group">
+                <label class="input-label">Código de Barras / QR Code</label>
+                <input type="text" id="codigoProduto" placeholder="Ex: 7891234567890" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit">[ CADASTRAR PRODUTO ]</button>
+          </form>
+
+          <h3 style="margin-top: 40px;">Produtos Cadastrados no Sistema</h3>
+          <table class="product-table">
+            <thead>
+              <tr>
+                <th>Nome do Produto</th>
+                <th>Código de Leitura</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaProdutos">
+              <!-- Produtos cadastrados vão aparecer aqui -->
+            </tbody>
+          </table>
+        </div>
+      </div>
 
     </main>
 
   </div>
+  <!-- Modal de Detalhes do Pedido -->
+  <dialog id="modalDetalhes"
+    style="padding: 24px; border-radius: 8px; border: 1px solid #ccc; max-width: 450px; width: 100%; margin: auto;">
+    <h3 style="margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 8px;">Detalhes do Pedido</h3>
+
+    <div style="font-size: 13px; line-height: 1.8; margin-bottom: 20px;">
+      <p><strong>ID do Pedido:</strong> <span id="detalheId">-</span></p>
+      <p><strong>Lote / Turno:</strong> <span id="detalheLote">-</span></p>
+      <p><strong>Operador:</strong> <span id="detalheOperador">-</span></p>
+      <p><strong>Progresso:</strong> <span id="detalheProgresso">-</span></p>
+      <p><strong>Status Atual:</strong> <span id="detalheStatus">-</span></p>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end;">
+      <button onclick="document.getElementById('modalDetalhes').close()"
+        style="padding: 8px 16px; background: #000; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Fechar</button>
+    </div>
+  </dialog>
 
   <script src="dashboard.js"></script>
 </body>
+
 </html>
